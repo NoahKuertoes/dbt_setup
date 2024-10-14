@@ -4,14 +4,14 @@ WITH daily_data AS (
 ),
 add_features AS (
     SELECT *
-    (json_data->>'date')::DATE AS date_day,
-    EXTRACT(YEAR FROM (json_data->>'date')::DATE) AS year,
-    EXTRACT(MONTH FROM (json_data->>'date')::DATE) AS month,
-    EXTRACT(WEEK FROM (json_data->>'date')::DATE) AS cw,
-    TO_CHAR((json_data->>'date')::DATE, 'Month') AS month_name,
-    TO_CHAR((json_data->>'date')::DATE, 'Day') AS weekday
+    ,date::DATE AS date_day
+    ,EXTRACT(YEAR FROM date::DATE) AS year
+    ,EXTRACT(MONTH FROM date::DATE) AS month
+    ,EXTRACT(WEEK FROM date::DATE) AS cw
+    ,TO_CHAR(date::DATE, 'Month') AS month_name
+    ,TO_CHAR(date::DATE, 'Day') AS weekday
     FROM daily_data 
-),
+), 
 add_more_features AS (
     SELECT *
 		, (CASE 
