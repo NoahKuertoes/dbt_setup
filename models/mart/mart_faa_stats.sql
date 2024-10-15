@@ -23,7 +23,7 @@ arrivals AS (
 							,COUNT(arr_time)  AS arr_n_flights -- how many flights actually occured in total (arrivals)
 							,COUNT(DISTINCT tail_number) AS arr_nunique_tails -- *(optional) how many unique airplanes travelled on average*
 							,COUNT(DISTINCT airline) AS arr_nunique_airlines -- *(optional) how many unique airlines were in service  on average* 
-					FROM prep_flights
+					FROM {{ref('prep_flights')}}
 					GROUP BY dest
 ),
 total_stats AS (
